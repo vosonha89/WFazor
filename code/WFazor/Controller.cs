@@ -1,20 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WFazor
 {
-    public abstract class Controller
+    public abstract class Controller : IController
     {
-        private WFazorBrowser _Browser { get; set; }
+        public string DefaultAction { get; set; }
 
-        public virtual void RedirectTo(string action, string controller, object model)
+        public Controller()
         {
-            _Browser.RedirectTo(action, controller, model);
+            DefaultAction = "Index";
         }
 
+        public virtual bool BeforeExecute()
+        {
+            return true;
+        }
 
+        public void Execute(string actionName, object[] parameters = null)
+        {
+            WFazorEngine.Instance.CurrentController = this;
+            WFazorEngine.Instance.CurrentAction = actionName;
+            if (BeforeExecute())
+            {
+                Type type = this.GetType();
+                MethodInfo method = type.GetMethod(actionName);
+                method.Invoke(this, parameters);
+            }
+        }
     }
 }

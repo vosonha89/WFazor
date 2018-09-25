@@ -16,8 +16,11 @@ namespace WFazor
         private static WFazorEngine _Instance = null;
         private string _RuntimePath = string.Empty;
 
+        public WFazorBrowser Browser = null;
+        public IController CurrentController = null;
+        public string CurrentAction = string.Empty;
         public Setting Setting = null;
-        
+
         public static WFazorEngine Instance
         {
             get
@@ -46,6 +49,19 @@ namespace WFazor
             Engine.Razor = RazorEngineService.Create(config);
 
             _RuntimePath = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+        }
+
+        public void Initialize(Form mainForm, Controller defaultController)
+        {
+            if (Browser == null)
+            {
+                Browser = new WFazorBrowser();
+                Browser.Dock = DockStyle.Fill;
+                Browser.BringToFront();
+                mainForm.Controls.Add(Browser);
+
+                defaultController.Execute(defaultController.DefaultAction);
+            }
         }
 
         public string GetHtml(string filePath)

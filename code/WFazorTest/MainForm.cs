@@ -8,6 +8,8 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WFazor;
+using WFazorTest.Controllers;
 
 namespace WFazorTest
 {
@@ -17,7 +19,8 @@ namespace WFazorTest
         public MainForm()
         {
             InitializeComponent();
-            this.wFazorBrowser1.RedirectTo("Index", "Home", null);
+
+            WFazorEngine.Instance.Initialize(this, App.Home);
         }
     }
 }

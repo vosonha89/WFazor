@@ -63,7 +63,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionResult.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="Interface\IController.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="UIHelper.cs" />
     <Compile Include="Setting.cs" />

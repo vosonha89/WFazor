@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Web.Razor;
 
 namespace WFazor
 {
@@ -12,7 +11,7 @@ namespace WFazor
     {
         public WFazorBrowser()
         {
-
+            this.Dock = DockStyle.Fill;
         }
 
         public void RedirectTo(string action, string controller, object model)

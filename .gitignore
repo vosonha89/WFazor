@@ -3,3 +3,8 @@
 ################################################################################
 
 /code/.vs
+/code/WFazorTest/bin/Debug
+/code/WFazor/bin/Debug
+/code/packages
+/code/WFazor/obj/Debug
+/code/WFazorTest/obj/Debug

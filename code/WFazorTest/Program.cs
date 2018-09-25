@@ -14,6 +14,7 @@ namespace WFazorTest
         [STAThread]
         static void Main()
         {
+            App.Initialize();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
