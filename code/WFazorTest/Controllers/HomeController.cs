@@ -11,7 +11,16 @@ namespace WFazorTest.Controllers
     {
         public ActionResult Index()
         {
-            return new RedirectToAction(App.Login, "Index");
+            object info = null;
+            bool run = WFazorEngine.Instance.Session.TryGetValue("info", out info);
+            if (info == null)
+            {
+                return new RedirectToAction(AppRoute.Login, "Index");
+            }
+            else
+            {
+                return new View();
+            }
         }
     }
 }

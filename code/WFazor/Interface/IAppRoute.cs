@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace WFazor
 {
-    public class Session
+    public interface IAppRoute
     {
+        IController Default { get;}
+        IController GetController(string controllerName);
     }
 }

@@ -20,7 +20,7 @@ namespace WFazorTest
         {
             InitializeComponent();
 
-            WFazorEngine.Instance.Initialize(this, App.Home);
+            WFazorEngine.Instance.Initialize(this, new AppRoute());
         }
     }
 }

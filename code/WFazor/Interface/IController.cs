@@ -8,6 +8,7 @@ namespace WFazor
 {
     public interface IController
     {
+        string DefaultAction { get; }
         void Execute(string actionName, object[] parameters = null);
     }
 }

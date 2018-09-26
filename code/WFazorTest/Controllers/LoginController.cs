@@ -13,5 +13,11 @@ namespace WFazorTest.Controllers
         {
             return new View();
         }
+
+        public ActionResult DoLogin(object param)
+        {
+            WFazorEngine.Instance.Session.Add("info", param);
+            return new RedirectToAction(AppRoute.Home, "Index");
+        }
     }
 }

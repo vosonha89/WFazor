@@ -20,6 +20,8 @@ namespace WFazor
         public IController CurrentController = null;
         public string CurrentAction = string.Empty;
         public Setting Setting = null;
+        public IAppRoute Route = null;
+        public Dictionary<string, object> Session;
 
         public static WFazorEngine Instance
         {
@@ -51,16 +53,18 @@ namespace WFazor
             _RuntimePath = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
         }
 
-        public void Initialize(Form mainForm, Controller defaultController)
+        public void Initialize(Form mainForm, IAppRoute route)
         {
             if (Browser == null)
             {
                 Browser = new WFazorBrowser();
                 Browser.Dock = DockStyle.Fill;
                 Browser.BringToFront();
+                Browser.ObjectForScripting = new ScriptInterface();
                 mainForm.Controls.Add(Browser);
-
-                defaultController.Execute(defaultController.DefaultAction);
+                Route = route;
+                Session = new Dictionary<string, object>();
+                Route.Default.Execute(Route.Default.DefaultAction);
             }
         }
 
@@ -73,6 +77,19 @@ namespace WFazor
         public string GetRuntimePath()
         {
             return _RuntimePath;
+        }
+    }
+
+    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
+    public class ScriptInterface
+    {
+        public void CallAction(string actionName, string controllerName, object data = null)
+        {
+            // Check wrong in here
+            List<object> parameters = new List<object>();
+            parameters.Add(data);
+            IController controller = WFazorEngine.Instance.Route.GetController(controllerName);
+            controller.Execute(actionName, parameters.ToArray());
         }
     }
 }

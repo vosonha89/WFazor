@@ -9,11 +9,13 @@ namespace WFazor
 {
     public abstract class Controller : IController
     {
-        public string DefaultAction { get; set; }
+        public string DefaultAction
+        {
+            get => "Index";
+        }
 
         public Controller()
         {
-            DefaultAction = "Index";
         }
 
         public virtual bool BeforeExecute()
