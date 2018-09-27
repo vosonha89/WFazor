@@ -1,4 +1,5 @@
-﻿<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,7 +32,7 @@
     </form>
     <script type="text/javascript">
         function callMe() {
-            var loginInfo = { username: "John", password: "Doe" };
+            var loginInfo = { username: document.getElementById("inputEmail").value, password: document.getElementById("inputPassword").value };
             window.external.CallAction("DoLogin", "Login", JSON.stringify(loginInfo));
         }
     </script>

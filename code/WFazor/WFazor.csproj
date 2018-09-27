@@ -72,6 +72,7 @@
     <Compile Include="WFazorBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WFazorDictionary.cs" />
     <Compile Include="WFazorEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

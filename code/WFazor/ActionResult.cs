@@ -8,10 +8,6 @@ namespace WFazor
 {
     public class ActionResult
     {
-        public ActionResult()
-        {
-
-        }
     }
 
     public class View : ActionResult

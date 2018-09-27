@@ -16,6 +16,7 @@ namespace WFazor
         private static WFazorEngine _Instance = null;
         private string _RuntimePath = string.Empty;
 
+        public Form Form = null;
         public WFazorBrowser Browser = null;
         public IController CurrentController = null;
         public string CurrentAction = string.Empty;
@@ -55,6 +56,7 @@ namespace WFazor
 
         public void Initialize(Form mainForm, IAppRoute route)
         {
+            Form = mainForm;
             if (Browser == null)
             {
                 Browser = new WFazorBrowser();

@@ -17,6 +17,7 @@ namespace WFazorTest.Controllers
         public ActionResult DoLogin(object param)
         {
             WFazorEngine.Instance.Session.Add("info", param);
+            System.Windows.Forms.MessageBox.Show(param.ToString());
             return new RedirectToAction(AppRoute.Home, "Index");
         }
     }
