@@ -22,7 +22,7 @@ namespace WFazor
         public string CurrentAction = string.Empty;
         public Setting Setting = null;
         public IAppRoute Route = null;
-        public Dictionary<string, object> Session;
+        public WFazorDictionary<string, object> Session;
 
         public static WFazorEngine Instance
         {
@@ -65,7 +65,7 @@ namespace WFazor
                 Browser.ObjectForScripting = new ScriptInterface();
                 mainForm.Controls.Add(Browser);
                 Route = route;
-                Session = new Dictionary<string, object>();
+                Session = new WFazorDictionary<string, object>();
                 Route.Default.Execute(Route.Default.DefaultAction);
             }
         }
