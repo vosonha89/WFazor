@@ -22,7 +22,7 @@ namespace WFazor
         public IController CurrentController = null;
         public string CurrentAction = string.Empty;
         public Setting Setting = null;
-        public IAppRoute Route = null;
+        public Route Route = null;
         public WFazorDictionary<string, object> Session;
 
         public static WFazorEngine Instance
@@ -55,7 +55,7 @@ namespace WFazor
             _RuntimePath = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
         }
 
-        public void Initialize(Form mainForm, IAppRoute route)
+        public void Initialize(Form mainForm, Route route)
         {
             Form = mainForm;
             if (Browser == null)

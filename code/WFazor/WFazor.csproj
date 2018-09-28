@@ -65,8 +65,8 @@
   <ItemGroup>
     <Compile Include="ActionResult.cs" />
     <Compile Include="Controller.cs" />
-    <Compile Include="Interface\IAppRoute.cs" />
     <Compile Include="Interface\IController.cs" />
+    <Compile Include="Route.cs" />
     <Compile Include="UIHelper.cs" />
     <Compile Include="Setting.cs" />
     <Compile Include="WFazorBrowser.cs">
