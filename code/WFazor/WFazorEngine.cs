@@ -71,9 +71,9 @@ namespace WFazor
             }
         }
 
-        public string GetHtml(string filePath)
+        public string GetHtml(string filePath, Type modelType = null, object model = null, DynamicViewBag viewBag = null)
         {
-            var result = Engine.Razor.RunCompile(filePath);
+            var result = Engine.Razor.RunCompile(filePath, modelType, model, viewBag);
             return result;
         }
 

@@ -15,12 +15,11 @@ namespace WFazor
             this.ScriptErrorsSuppressed = true;
         }
 
-        public void RedirectTo(string action, string controller, object model)
+        public void RedirectTo<T>(string action, string controller, T model)
         {
             string runTimePath = WFazorEngine.Instance.GetRuntimePath();
             string filePath = System.IO.Path.Combine(runTimePath, WFazorEngine.Instance.Setting.ViewFolder, controller, action + ".cshtml");
-            string html = WFazorEngine.Instance.GetHtml(filePath);
-
+            string html = WFazorEngine.Instance.GetHtml(filePath, typeof(T), model);
             this.DocumentText = html;
         }
     }

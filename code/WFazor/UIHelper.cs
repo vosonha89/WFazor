@@ -16,6 +16,12 @@ namespace WFazor
             string filePath = System.IO.Path.Combine(runTimePath, absolutePath.Replace("/", @"\"));
             return new RawString(filePath);
         }
+
+        public IEncodedString RenderComponent<T>(string componentPath, T model)
+        {
+            string html = WFazorEngine.Instance.GetHtml(componentPath, typeof(T), model);
+            return new RawString(html);
+        }
     }
 
     public abstract class HtmlSupportTemplateBase<T> : TemplateBase<T>
