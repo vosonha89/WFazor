@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WFazor
+﻿namespace WFazor
 {
-    public class ActionResult
+    public abstract class ActionResult
     {
     }
 
+    /// <summary>
+    /// Return a View
+    /// </summary>
     public class View : ActionResult
     {
         public View(object model = null)
@@ -19,20 +16,15 @@ namespace WFazor
         }
     }
 
-    public class RedirectToView : ActionResult
+    /// <summary>
+    /// Redirect to Action
+    /// </summary>
+    public class RedirectToAction : ActionResult
     {
-        public RedirectToView(IController controller, string action, object model = null)
+        public RedirectToAction(IController controller, string action, object model = null)
         {
             string controllerName = controller.GetType().Name.Replace("Controller", string.Empty);
             WFazorEngine.Instance.Browser.RedirectTo(action, controllerName, model);
-        }
-    }
-
-    public class RedirectToAction : ActionResult
-    {
-        public RedirectToAction(IController controller, string action, object[] parameters = null)
-        {
-            controller.Execute(action, parameters);
         }
     }
 }

@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace WFazor
 {
+    /// <summary>
+    /// This class is engine for WFazor framework execute all function using singleton
+    /// </summary>
     public class WFazorEngine
     {
         private static WFazorEngine _Instance = null;
@@ -25,6 +28,9 @@ namespace WFazor
         public Route Route = null;
         public WFazorDictionary<string, object> Session;
 
+        /// <summary>
+        /// Singleton
+        /// </summary>
         public static WFazorEngine Instance
         {
             get
@@ -55,6 +61,11 @@ namespace WFazor
             _RuntimePath = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
         }
 
+        /// <summary>
+        /// Init WFazor engine by form and rout
+        /// </summary>
+        /// <param name="mainForm">Windows Form</param>
+        /// <param name="route">Route</param>
         public void Initialize(Form mainForm, Route route)
         {
             Form = mainForm;
@@ -71,6 +82,14 @@ namespace WFazor
             }
         }
 
+        /// <summary>
+        /// Get html render by using Razor Engine
+        /// </summary>
+        /// <param name="filePath">filePath</param>
+        /// <param name="modelType">modelType</param>
+        /// <param name="model">model</param>
+        /// <param name="viewBag">viewBag</param>
+        /// <returns></returns>
         public string GetHtml(string filePath, Type modelType = null, object model = null, DynamicViewBag viewBag = null)
         {
             var result = Engine.Razor.RunCompile(filePath, modelType, model, viewBag);
@@ -83,6 +102,9 @@ namespace WFazor
         }
     }
 
+    /// <summary>
+    /// This class help font-end call action in controller
+    /// </summary>
     [System.Runtime.InteropServices.ComVisibleAttribute(true)]
     public class ScriptInterface
     {

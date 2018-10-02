@@ -1,28 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WFazor
 {
+    /// <summary>
+    /// This class is base controller
+    /// </summary>
     public abstract class Controller : IController
     {
+        /// <summary>
+        /// Default action in any controller. Default is "Index"
+        /// </summary>
         public string DefaultAction
         {
             get => "Index";
         }
 
-        public Controller()
-        {
-        }
-
+        /// <summary>
+        /// This method will be execute before invoke to action. If return false, action will be not execute
+        /// </summary>
+        /// <returns>True or False</returns>
         public virtual bool BeforeExecute()
         {
             return true;
         }
 
+        /// <summary>
+        /// Invoke action in current controller
+        /// </summary>
+        /// <param name="actionName">actionName</param>
+        /// <param name="parameters">parameters</param>
         public void Execute(string actionName, object[] parameters = null)
         {
             WFazorEngine.Instance.CurrentController = this;
