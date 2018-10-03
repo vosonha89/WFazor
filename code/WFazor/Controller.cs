@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace WFazor
@@ -38,7 +40,36 @@ namespace WFazor
             {
                 Type type = this.GetType();
                 MethodInfo method = type.GetMethod(actionName);
-                method.Invoke(this, parameters);
+
+                ParameterInfo[] parameterInfos = method.GetParameters();
+                List<object> parsedParams = new List<object>();
+                if (parameters != null)
+                {
+                    for (int i = 0; i < parameters.Length; i++)
+                    {
+                        object parsedItem = null;
+                        try
+                        {
+                            Type paramType = parameterInfos[i].ParameterType;
+                            if (paramType.IsValueType)
+                            {
+                                parsedItem = parameters[i];
+                            }
+                            else
+                            {
+                                parsedItem = JsonConvert.DeserializeObject(parameters[i].ToString(), paramType);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            GC.Collect();
+                            parsedItem = parameters[i];
+                        }
+                        parsedParams.Add(parsedItem);
+                    }
+                }
+
+                method.Invoke(this, parsedParams.ToArray());
             }
         }
     }

@@ -15,13 +15,13 @@
 </head>
 
 <body class="text-center" cz-shortcut-listen="true">
-    <form class="form-signin">
+    <form class="form-signin" data-model="LoginModel">
         <img class="mb-4" src="@Html.Content("Content/img/bootstrap-solid.svg")" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" data-bind="Username">
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" data-bind="Password">
         <div class="checkbox mb-3">
             <label>
                 <input type="checkbox" value="remember-me"> Remember me
@@ -32,8 +32,16 @@
     </form>
     <script src="@Html.Content("Content/js/wfazorlib.js")"></script>
     <script type="text/javascript">
+        try {
+             WFazor.init(@Html.RuntimePath());
+        }
+        catch (err) {
+            alert(err);
+        }
+       
+
         function callMe() {
-            var loginInfo = { username: document.getElementById("inputEmail").value, password: document.getElementById("inputPassword").value };
+            var loginInfo = { Username: document.getElementById("inputEmail").value, Password: document.getElementById("inputPassword").value };
             try {
                 WFazor.callAction("DoLogin", "Login", JSON.stringify(loginInfo));
             }

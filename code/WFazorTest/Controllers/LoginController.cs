@@ -14,10 +14,10 @@ namespace WFazorTest.Controllers
             return new View();
         }
 
-        public ActionResult DoLogin(object param)
+        public ActionResult DoLogin(string model)
         {
-            WFazorEngine.Instance.Session.Add("info", param);
-            System.Windows.Forms.MessageBox.Show(param.ToString());
+            WFazorEngine.Instance.Session.Add("info", model);
+            System.Windows.Forms.MessageBox.Show(model.ToString());
             return new RedirectToAction(AppRoute.Home, "Index");
         }
     }

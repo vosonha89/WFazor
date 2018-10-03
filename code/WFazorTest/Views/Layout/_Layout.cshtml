@@ -10,6 +10,14 @@
     <link href="@Html.Content("Content/css/bootstrap.min.css")" rel="stylesheet" />
     <!-- Custom styles for this template -->
     <link href="@Html.Content("Content/css/pricing.css")" rel="stylesheet" />
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="@Html.Content("Content/js/jquery-3.3.1.slim.min.js")"></script>
+    <script src="@Html.Content("Content/js/popper.min.js")"></script>
+    <script src="@Html.Content("Content/js/bootstrap.min.js")"></script>
+    <script src="@Html.Content("Content/js/holder.min.js")"></script>
+    <script src="@Html.Content("Content/js/wfazorlib")"></script>
 </head>
 <body cz-shortcut-listen="true">
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -24,21 +32,13 @@
     </div>
 
     @RenderBody();
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="@Html.Content("Content/js/jquery-3.3.1.slim.min.js")"></script>
-    <script src="@Html.Content("Content/js/popper.min.js")"></script>
-    <script src="@Html.Content("Content/js/bootstrap.min.js")"></script>
-    <script src="@Html.Content("Content/js/holder.min.js")"></script>
     <script>
         Holder.addTheme('thumb', {
             bg: '#55595c',
             fg: '#eceeef',
             text: 'Thumbnail'
         });
-
+        WFazor.init(@Html.RuntimePath());
     </script>
 
 
