@@ -15,10 +15,10 @@
 </head>
 
 <body class="text-center" cz-shortcut-listen="true">
-    <form class="form-signin" data-model="LoginModel">
+    <form id="signinForm" class="form-signin" data-action="DoLogin" data-controller="Login">
         <img class="mb-4" src="@Html.Content("Content/img/bootstrap-solid.svg")" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
+        <label for="inputEmail" class="sr-only">Email address : </label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" data-bind="Username">
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" data-bind="Password">
@@ -27,28 +27,16 @@
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" onclick="callMe()">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" onclick="WFazor.submit(signinForm)">Sign in</button>
         <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
     </form>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="@Html.Content("Content/js/jquery-3.3.1.slim.min.js")"></script>
+    <script src="@Html.Content("Content/js/popper.min.js")"></script>
+    <script src="@Html.Content("Content/js/bootstrap.min.js")"></script>
+    <script src="@Html.Content("Content/js/holder.min.js")"></script>
     <script src="@Html.Content("Content/js/wfazorlib.js")"></script>
     <script type="text/javascript">
-        try {
-             WFazor.init(@Html.RuntimePath());
-        }
-        catch (err) {
-            alert(err);
-        }
-       
-
-        function callMe() {
-            var loginInfo = { Username: document.getElementById("inputEmail").value, Password: document.getElementById("inputPassword").value };
-            try {
-                WFazor.callAction("DoLogin", "Login", JSON.stringify(loginInfo));
-            }
-            catch (err) {
-                alert(err);
-            }
-        }
     </script>
 </body>
 </html>
