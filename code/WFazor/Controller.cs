@@ -32,7 +32,7 @@ namespace WFazor
         /// </summary>
         /// <param name="actionName">actionName</param>
         /// <param name="parameters">parameters</param>
-        public void Execute(string actionName, object[] parameters = null)
+        public T Execute<T>(string actionName, object[] parameters = null) where T : class
         {
             WFazorEngine.Instance.CurrentController = this;
             WFazorEngine.Instance.CurrentAction = actionName;
@@ -68,8 +68,12 @@ namespace WFazor
                         parsedParams.Add(parsedItem);
                     }
                 }
-
-                method.Invoke(this, parsedParams.ToArray());
+                object retunObj = method.Invoke(this, parsedParams.ToArray());
+                return retunObj as T;
+            }
+            else
+            {
+                return null;
             }
         }
     }

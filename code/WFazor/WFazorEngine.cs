@@ -78,7 +78,7 @@ namespace WFazor
                 mainForm.Controls.Add(Browser);
                 Route = route;
                 Session = new WFazorDictionary<string, object>();
-                Route.Default.Execute(Route.Default.DefaultAction);
+                Route.Default.Execute<Func<ActionResult>>(Route.Default.DefaultAction);
             }
         }
 
@@ -114,7 +114,7 @@ namespace WFazor
             List<object> parameters = new List<object>();
             parameters.Add(data);
             IController controller = WFazorEngine.Instance.Route.GetController(controllerName);
-            controller.Execute(actionName, parameters.ToArray());
+            controller.Execute<Func<ActionResult>>(actionName, parameters.ToArray());
         }
     }
 }

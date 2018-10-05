@@ -1,4 +1,6 @@
-﻿namespace WFazor
+﻿using RazorEngine.Text;
+
+namespace WFazor
 {
     public abstract class ActionResult
     {
@@ -25,6 +27,27 @@
         {
             string controllerName = controller.GetType().Name.Replace("Controller", string.Empty);
             WFazorEngine.Instance.Browser.RedirectTo(action, controllerName, model);
+        }
+    }
+
+    /// <summary>
+    /// Return a componel view with model
+    /// </summary>
+    /// <typeparam name="T">Model object</typeparam>
+    public class ComponentView<T> : IEncodedString where T : class
+    {
+        public string ComponentViewPath { get; set; }
+        public T Model { get; set; }
+        public ComponentView(string componentViewPath, T model = null)
+        {
+            ComponentViewPath = componentViewPath;
+            Model = model;
+        }
+
+        public string ToEncodedString()
+        {
+            string html = WFazorEngine.Instance.GetHtml(ComponentViewPath, typeof(T), Model);
+            return new RawString(html).ToEncodedString();
         }
     }
 }

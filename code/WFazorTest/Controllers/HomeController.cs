@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RazorEngine.Text;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,11 @@ namespace WFazorTest.Controllers
             {
                 return new View();
             }
+        }
+
+        public string GetListData(string componentViewPath, object data)
+        {
+            return new ComponentView<Models.MyComponentModel>(componentViewPath, new Models.MyComponentModel()).ToEncodedString();
         }
     }
 }

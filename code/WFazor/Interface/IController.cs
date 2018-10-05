@@ -9,6 +9,6 @@ namespace WFazor
     public interface IController
     {
         string DefaultAction { get; }
-        void Execute(string actionName, object[] parameters = null);
+        T Execute<T>(string actionName, object[] parameters = null) where T : class;
     }
 }
