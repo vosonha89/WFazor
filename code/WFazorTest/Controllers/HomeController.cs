@@ -24,18 +24,19 @@ namespace WFazorTest.Controllers
             }
         }
 
-        public string GetListData(string componentViewPath, object data)
+        public ActionResult GetListData(string componentViewPath, object data)
         {
-            return new ComponentView<Models.MyComponentModel>(componentViewPath, new Models.MyComponentModel()).ToEncodedString();
+            return new ComponentView<MyComponentModel>(componentViewPath, new MyComponentModel());
         }
 
-        public string GetJson()
+        public ActionResult GetJson()
         {
             LoginModel model = new LoginModel
             {
-                Username = "Vo Son Ha"
+                Username = "Vo Son Ha",
+                Password = "ABCXYZ"
             };
-            return new JsonResult(model).ToJson();
+            return new JsonResult(model);
         }
     }
 }

@@ -18,14 +18,13 @@ WFazor.submit = function (form) {
     catch (err) {
         alert("Error : " + err);
     }
-}
+};
 
 WFazor.callAction = function (action, controller, data) {
     try {
-        window.external.CallAction(action, controller, JSON.stringify(data));
-        window.external.notify();
+        return JSON.parse(window.external.CallAction(action, controller, JSON.stringify(data)));
     }
     catch (err) {
         alert("Error : " + err);
     }
-}
+};

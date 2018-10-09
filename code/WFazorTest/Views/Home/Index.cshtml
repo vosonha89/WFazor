@@ -95,7 +95,7 @@
     function getJson() {
         try {
             var jsonData = WFazor.callAction("GetJson", "Home");
-            alert(jsonData);
+            alert(jsonData.Data.Username);
         }
         catch (err) {
             alert(err);
