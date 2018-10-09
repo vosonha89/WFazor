@@ -1,5 +1,5 @@
 ﻿function WFazor() {
-
+    
 }
 
 WFazor.submit = function (form) {
