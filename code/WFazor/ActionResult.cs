@@ -1,4 +1,5 @@
 ﻿using RazorEngine.Text;
+using Newtonsoft.Json;
 
 namespace WFazor
 {
@@ -48,6 +49,25 @@ namespace WFazor
         {
             string html = WFazorEngine.Instance.GetHtml(ComponentViewPath, typeof(T), Model);
             return new RawString(html).ToEncodedString();
+        }
+    }
+
+    public class JsonResult
+    {
+        public object Data { get; set; }
+        public bool HasError { get; set; }
+        public string ErrorMessage { get; set; }
+
+        public JsonResult(object data, bool hasError = false, string errorMessage = "")
+        {
+            Data = data;
+            HasError = hasError;
+            ErrorMessage = errorMessage;
+        }
+
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this);
         }
     }
 }

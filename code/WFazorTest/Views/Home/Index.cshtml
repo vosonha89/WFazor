@@ -32,7 +32,7 @@
                     <li>Priority email support</li>
                     <li>Help center access</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+                <button type="button" class="btn btn-lg btn-block btn-primary" onclick="getJson()">Get started</button>
             </div>
         </div>
         <div class="card mb-4 shadow-sm">
@@ -90,3 +90,15 @@
         </div>
     </footer>
 </div>
+<script src="@Html.Content("Content/js/wfazorlib.js")"></script>
+<script type="text/javascript">
+    function getJson() {
+        try {
+            var jsonData = WFazor.callAction("GetJson", "Home");
+            alert(jsonData);
+        }
+        catch (err) {
+            alert(err);
+        }
+    }
+</script>

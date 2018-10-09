@@ -65,7 +65,10 @@ namespace WFazor
                             GC.Collect();
                             parsedItem = parameters[i];
                         }
-                        parsedParams.Add(parsedItem);
+                        if (parameters[i] != null)
+                        {
+                            parsedParams.Add(parsedItem);
+                        }
                     }
                 }
                 object retunObj = method.Invoke(this, parsedParams.ToArray());

@@ -108,13 +108,13 @@ namespace WFazor
     [System.Runtime.InteropServices.ComVisibleAttribute(true)]
     public class ScriptInterface
     {
-        public void CallAction(string actionName, string controllerName, object data = null)
+        public object CallAction(string actionName, string controllerName, object data = null)
         {
             // Check wrong in here
             List<object> parameters = new List<object>();
             parameters.Add(data);
             IController controller = WFazorEngine.Instance.Route.GetController(controllerName);
-            controller.Execute<Func<ActionResult>>(actionName, parameters.ToArray());
+            return controller.Execute<Func<ActionResult>>(actionName, parameters.ToArray());
         }
     }
 }

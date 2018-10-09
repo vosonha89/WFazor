@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WFazor;
+using WFazorTest.Models;
 
 namespace WFazorTest.Controllers
 {
@@ -26,6 +27,15 @@ namespace WFazorTest.Controllers
         public string GetListData(string componentViewPath, object data)
         {
             return new ComponentView<Models.MyComponentModel>(componentViewPath, new Models.MyComponentModel()).ToEncodedString();
+        }
+
+        public string GetJson()
+        {
+            LoginModel model = new LoginModel
+            {
+                Username = "Vo Son Ha"
+            };
+            return new JsonResult(model).ToJson();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WFazor;
+using WFazorTest.Models;
 
 namespace WFazorTest.Controllers
 {
@@ -14,10 +15,9 @@ namespace WFazorTest.Controllers
             return new View();
         }
 
-        public ActionResult DoLogin(string model)
+        public ActionResult DoLogin(LoginModel model)
         {
             WFazorEngine.Instance.Session.Add("info", model);
-            System.Windows.Forms.MessageBox.Show(model.ToString());
             return new RedirectToAction(AppRoute.Home, "Index");
         }
     }
