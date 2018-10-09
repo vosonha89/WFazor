@@ -57,7 +57,8 @@ namespace WFazor
             List<object> parameters = new List<object>();
             parameters.Add(componentViewPath);
             parameters.Add(data);
-            IEncodedString htmlRaw = new RawString(controller.Execute<string>(actionName, parameters.ToArray()));
+            ActionResult result = controller.Execute<ActionResult>(actionName, parameters.ToArray());
+            IEncodedString htmlRaw = new RawString(result.ToEncodedString());
             return htmlRaw;
         }
 

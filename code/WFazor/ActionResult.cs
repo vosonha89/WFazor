@@ -5,6 +5,10 @@ namespace WFazor
 {
     public abstract class ActionResult
     {
+        public virtual string ToEncodedString()
+        {
+            return string.Empty;
+        }
     }
 
     /// <summary>
@@ -32,10 +36,10 @@ namespace WFazor
     }
 
     /// <summary>
-    /// Return a componel view with model
+    /// Component view with model
     /// </summary>
     /// <typeparam name="T">Model object</typeparam>
-    public class ComponentView<T> : IEncodedString where T : class
+    public class ComponentView<T> : ActionResult where T : class
     {
         public string ComponentViewPath { get; set; }
         public T Model { get; set; }
@@ -45,14 +49,14 @@ namespace WFazor
             Model = model;
         }
 
-        public string ToEncodedString()
+        public override string ToEncodedString()
         {
             string html = WFazorEngine.Instance.GetHtml(ComponentViewPath, typeof(T), Model);
             return new RawString(html).ToEncodedString();
         }
     }
 
-    public class JsonResult
+    public class JsonResult : ActionResult
     {
         public object Data { get; set; }
         public bool HasError { get; set; }

@@ -1,4 +1,5 @@
-﻿using RazorEngine;
+﻿using Newtonsoft.Json;
+using RazorEngine;
 using RazorEngine.Configuration;
 using RazorEngine.Templating;
 using RazorEngine.Text;
@@ -108,13 +109,14 @@ namespace WFazor
     [System.Runtime.InteropServices.ComVisibleAttribute(true)]
     public class ScriptInterface
     {
-        public object CallAction(string actionName, string controllerName, object data = null)
+        public string CallAction(string actionName, string controllerName, object data = null)
         {
             // Check wrong in here
             List<object> parameters = new List<object>();
             parameters.Add(data);
             IController controller = WFazorEngine.Instance.Route.GetController(controllerName);
-            return controller.Execute<Func<ActionResult>>(actionName, parameters.ToArray());
+            ActionResult returnValue = controller.Execute<ActionResult>(actionName, parameters.ToArray());
+            return JsonConvert.SerializeObject(returnValue);
         }
     }
 }
