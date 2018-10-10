@@ -13,7 +13,7 @@ WFazor.submit = function (form) {
             data[dataBind] = $(element).val();
         });
 
-        window.external.CallAction(actionName, controllerName, JSON.stringify(data));
+        return window.external.CallAction(actionName, controllerName, JSON.stringify(data));
     }
     catch (err) {
         alert("Error : " + err);
